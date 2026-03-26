@@ -45,4 +45,17 @@ footer {
         display: block;
         margin: 5px 0;
     }
+    section {
+        padding: 1rem;
+    }
 }
+
+@media (min-width: 601px) {
+    header nav ul li {
+        display: inline-block;
+        margin-right: 10px;
+    }
+    section {
+        padding: 2rem;
+    }
+}   
