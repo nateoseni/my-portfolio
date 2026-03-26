@@ -53,15 +53,15 @@
     <section id="contact">
         <h2>Contact</h2>
         <p>Leave your information and a message to contact me below!</p>
-
-        <form>
+        <form id="contact-form">
             <label for="name">Name:</label><br>
-            <label type="text" id="name" name="name"></label><br>
+            <input type="text" id="name" name="name"></input><br>
             <label for="email">Email:</label><br>
-            <label type="text" id="email" email="email"></label><br>
+            <input type="text" id="email" placeholder="yourname@email.com"><br>
             <label for="message">Enter a Message:</label><br>
+            <textarea name="message" id="message" placeholder="Type your message here:"></textarea>
             <label type="text" id="message" message="message"></label><br>
-
+            <button type="submit">Submit</button>
         </form>
     </section>
 
