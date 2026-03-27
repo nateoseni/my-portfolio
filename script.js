@@ -64,12 +64,14 @@ form.addEventListener('submit', function(event) {
 
 //canvas API for bonus
 
-const canvas = getElementById('myCanvas');
+const canvas = document.getElementById('myCanvas');
 const ctx = canvas.getContext('2d');
 
 //
 let x = 100;
-let y = 1; //the velocity of the animated circle
+let velocityX = 1; //the velocity of the animated circle
+let velocityY = 1;
+let y = 100; 
 let radius = 30;
 
 
@@ -77,20 +79,26 @@ let radius = 30;
 function animate() {
     requestAnimationFrame(animate);
     //clear the canvas each time it refreshes
-    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     //draw a circle
     ctx.beginPath();
-    ctx.arc(x, canvas.height / 2, radius, 0, Math.PI * 2); // dimensions of the circle (x, y, radius, start angle, end angle)
-    ctx.strokeStyle = 'teal';
+    ctx.arc(x, y, radius, 0, Math.PI * 2); // dimensions of the circle (x, y, radius, start angle, end angle)
+    ctx.fillStyle = 'teal';
+    ctx.fill();
     ctx.stroke();
 
     //make sure circle doesnt go off the screen, reverse the velocity when the edge of the circle reaches the end of the canvas width
-    if(x + radius > innerWidth) {
-        y = -y;
+    if(x + radius > canvas.width || x - radius < 0) {
+        velocityX = -velocityX;
     }
-
+    //same thing as before, but with the top and bottom of the screen
+    if(y + radius > canvas.height || y - radius < 0) {
+        velocityY = -velocityY
+    }
     //increment the circle with the velocity to make it move
-    x += y;
+    x += velocityX;
+    y += velocityY;
 }
+animate();
 
 

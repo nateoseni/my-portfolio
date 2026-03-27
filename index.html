@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio Website</title>
     <link href="styles.css" rel="stylesheet">
-    <script src="script.js" defer></script>
 </head>
 <body>
     <header>
@@ -60,14 +59,19 @@
             <input type="text" id="email" placeholder="yourname@email.com"><br>
             <label for="message">Enter a Message:</label><br>
             <textarea name="message" id="message" placeholder="Type your message here:"></textarea>
-            <label type="text" id="message" message="message"></label><br>
             <button type="submit">Submit</button>
             <p id="error-message"></p>
         </form>
     </section>
 
+    <section id="canvas">
+        <h2>Enjoy this Circle</h2>
+        <canvas id="myCanvas" width="300" height="150"></canvas>
+    </section>
+
     <footer>
         <p>&copy; 2026 Nate's Portfolio. All rights reserved.</p>
     </footer>
+    <script src="script.js" defer></script>
 </body>
 </html>
