@@ -61,3 +61,36 @@ form.addEventListener('submit', function(event) {
     //reset form upon submission
     form.reset();
 });
+
+//canvas API for bonus
+
+const canvas = getElementById('myCanvas');
+const ctx = canvas.getContext('2d');
+
+//
+let x = 100;
+let y = 1; //the velocity of the animated circle
+let radius = 30;
+
+
+
+function animate() {
+    requestAnimationFrame(animate);
+    //clear the canvas each time it refreshes
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    //draw a circle
+    ctx.beginPath();
+    ctx.arc(x, canvas.height / 2, radius, 0, Math.PI * 2); // dimensions of the circle (x, y, radius, start angle, end angle)
+    ctx.strokeStyle = 'teal';
+    ctx.stroke();
+
+    //make sure circle doesnt go off the screen, reverse the velocity when the edge of the circle reaches the end of the canvas width
+    if(x + radius > innerWidth) {
+        y = -y;
+    }
+
+    //increment the circle with the velocity to make it move
+    x += y;
+}
+
+
