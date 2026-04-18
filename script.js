@@ -83,7 +83,7 @@ function animate() {
     //draw a circle
     ctx.beginPath();
     ctx.arc(x, y, radius, 0, Math.PI * 2); // dimensions of the circle (x, y, radius, start angle, end angle)
-    ctx.fillStyle = 'teal';
+    ctx.fillStyle = 'aquamarine';
     ctx.fill();
     ctx.stroke();
 
