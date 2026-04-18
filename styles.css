@@ -5,11 +5,25 @@ body {
     background-color: #333;
 }
 
-.light-mode {
-    background-color: #f0f0f0;
-    color: #333;
-
+#theme-toggle {
+    height: 50px;
+    width: 50px;
+    background-color: white;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
 }
+
+#theme-toggle svg {
+    fill: black
+}
+
+#theme-toggle svg:last-child {
+    display: none;
+}
+
 
 header {
     background-color: #3bb6a0;
