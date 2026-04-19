@@ -1,8 +1,16 @@
+
+
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 20 px;
     background-color: #333;
+}
+
+.light-mode {
+    background-color: #f9f9f9;
+    color: #333;
 }
 
 #theme-toggle {
@@ -20,8 +28,16 @@ body {
     fill: black
 }
 
-#theme-toggle svg:last-child {
+#theme-toggle svg:first-child {
     display: none;
+}
+
+.light-mode #theme-toggle svg:last-child {
+    display: none;
+}
+
+.light-mode #theme-toggle svg:first-child {
+    display: block;
 }
 
 
@@ -56,10 +72,12 @@ section {
     text-align: center;
     padding: 2rem;
     margin: 20px auto;
-    max-width: 800px;
+    max-width: 1200px;
+    width: 90%;
     color: #3bb6a0;
     background-color: rgba(249, 249, 249, 0.909);
     box-sizing:border-box;
+    min-height: 400px;
 }
 
 #projects {
