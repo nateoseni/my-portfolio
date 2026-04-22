@@ -175,15 +175,15 @@ function draw() {
     
     const time = Date.now();
 
-    headerCtx.shadowBlur = 0;
+    headerCtx.shadowBlur = 0; // reset shadow for lines
     particles.forEach((p1, i) => {
         particles.slice(i + 1).forEach(p2 => {
             const dx = p1.x - p2.x;
             const dy = p1.y - p2.y;
             const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 80) {
+            if (dist < 200) {
                 headerCtx.beginPath();
-                headerCtx.strokeStyle = `rgba(255, 100, 255, ${(1 - dist / 80) * 0.2})`; // line color with fading effect based on distance
+                headerCtx.strokeStyle = `rgba(255, 100, 255, ${(1 - dist / 200) * 0.5})`; // line color with fading effect based on distance
                 headerCtx.lineWidth = 0.5;
                 headerCtx.moveTo(p1.x, p1.y);
                 headerCtx.lineTo(p2.x, p2.y);
