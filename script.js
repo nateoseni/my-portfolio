@@ -62,17 +62,25 @@ form.addEventListener('submit', function(event) {
     form.reset();
 });
 
-const toggle = document.getElementById('#theme-toggle');
+const toggle = document.querySelector('#theme-toggle');
 
-function switchTheme() {
-    if(e.target.checked) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-    } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-    }
-}
+// function switchTheme() {
+//     if (e.target.checked) {
+//         document.documentElement.setAttribute('data-theme', 'dark');
+//     } else {
+//         document.documentElement.setAttribute('data-theme', 'light');
+//     }
+// }
 
-toggle.addEventListener('change', switchTheme, false);
+// toggle.addEventListener('change', switchTheme, false);
+
+    toggle.addEventListener('change', (e) => {
+        if (e.target.checked) {
+            document.documentElement.setAttribute('data-theme', 'light');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+});
 
 //canvas API for bonus
 
