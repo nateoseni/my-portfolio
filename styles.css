@@ -5,6 +5,15 @@
     --background-color: #333;
     --accent-color: #3bb6a0;
 }
+
+[data-theme="dark"] {
+    --primary-color: #3bb6a0;
+    --secondary-color: #f9f9f9;
+    --text-color: #f9f9f9;
+    --background-color: #333;
+    --accent-color: #3bb6a0;
+}
+
 @font-face {
     font-family: 'technology';
     src: url("Technology-Bold.ttf") format("truetype");
@@ -119,17 +128,17 @@ header nav ul {
     opacity: 0;
 }
 
-#theme-toggle:checked + .slider {
+#theme-toggle:checked + .theme-slider .slider {
     transform: translateX(26px);
     background-color: #333;
 
 }
 
-#theme-toggle:checked + .slider .sun {
+#theme-toggle:checked + .theme-slider .sun {
     opacity: 0;
 }
 
-#theme-toggle:checked + .slider .moon {
+#theme-toggle:checked + .theme-slider .moon {
     opacity: 1;
     fill: yellow;
 }
