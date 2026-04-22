@@ -2,6 +2,12 @@ html {
     scroll-behavior: smooth;
 }
 
+img, canvas {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
 :root {
     --primary-color: #216869;
     --secondary-color: #dce1de;
@@ -368,12 +374,19 @@ footer {
 }
 
 @media screen and (max-width: 768px) {
+
+    header {
+        height: auto;
+        min-height: 30vh;
+        padding-bottom: 20px;
+    }
+
     header nav ul {
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
         justify-content: center;
-        padding: 20px 0;
-        gap: 15px;
+        padding: 10px 0;
+        gap: 10px;
     }
 
     header nav ul li {
@@ -382,18 +395,46 @@ footer {
     }
 
     header nav a {
-        font-size: 1.2rem;
-        width: 80%;
+        font-size: 0.9rem;
+        min-width: 80px;
+        padding: 8px 12px;
+        width: auto;
         text-align: center;
-        padding: 12px 0;
+        display: inline-block;
     }
+
 }
 
 @media screen and (max-width: 768px) {
-    .header-content .Head, .header-content .Shoulder {
-        font-size: 2rem;
-        padding-left: 10%;
-        padding-top: 10px;
+
+    section {
+        padding: 40px 20px;
+        width: 100%;
+        min-height: auto;
+    }
+
+    .details-section img {
+        height: 150px;
+        object-fit: contain;
+        margin: 10px auto;
+    }
+
+    canvas {
+        height: 300px;
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .header-content .Head {
+        font-size: 1.8 rem;
+        padding-left: 0;
+        text-align: center;
+    }
+     .header-content .Shoulder {
+        font-size: 1.2rem;
+        padding-left: 0;
+        padding-top: 5px;
+        text-align: center;
     }
 
     #about, #contact {
@@ -404,11 +445,19 @@ footer {
 
     .about-header, .contact-info {
         text-align: center;
-        align-items: center;
+        font-size: 2.2rem;
+        margin-bottom: 20px;
     }
 
     .about-text-box, #contact-form, .contact-message {
         max-width: 100%;
-        width: 100%;
+        width: 95%;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .about-header, .projects-header {
+        font-size: 2rem;
+        text-align: center;
     }
 }
