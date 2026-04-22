@@ -216,6 +216,12 @@ section {
     padding: 10px 20px;
 }
 
+#projects .projects-header {
+    font-family: 'overcame', sans-serif;
+    font-size: 3rem;
+    margin-bottom: 30px;
+}
+
 .project-card {
     flex: 1;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
