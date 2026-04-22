@@ -121,4 +121,109 @@ function animate() {
 }
 animate();
 
+const headerCanvas = document.getElementById('header-canvas');
+const headerCtx = headerCanvas.getContext('2d');
 
+let w, h, dpr;
+
+//make sure the canvas resizes with the window and accounts for device pixel ratio
+function resize() {
+    dpr = window.devicePixelRatio || 1;
+    w = window.innerWidth;
+    h = window.innerHeight;
+    headerCanvas.width = w * dpr;
+    headerCanvas.height = h * dpr;
+    headerCanvas.style.width = w + 'px';
+    headerCanvas.style.height = h + 'px';
+    headerCtx.setTransform(1, 0, 0, 1, 0, 0);
+    headerCtx.scale(dpr, dpr);
+}
+
+resize();
+
+window.addEventListener('resize', resize);
+
+const particles = [];
+const count = 120;
+
+function createParticle(x, y) {
+    return {
+        x: x !== undefined ? x : Math.random() * w,
+        y: y !== undefined ? y : Math.random() * h,
+        size: Math.random() * 2 + 1,
+        speed: Math.random() *0.6 + 0.2,
+        drift: (Math.random() - 0.5) * 0.5,
+        glow: Math.random() * 0.3 + 0.7,
+        hue: Math.random() * 40 + 260, // purple spectrum for the colour of particles
+        phase: Math.random() * Math.PI * 2 // random phase for the glow effect
+    };
+}
+
+for (let i = 0; i < count; i++) {
+    particles.push(createParticle());
+}
+
+let mouse = { x: w / 2, y: h / 2 };
+
+window.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+});
+
+function draw() {
+    headerCtx.clearRect(0, 0, w, h);
+    
+    const time = Date.now();
+
+    headerCtx.shadowBlur = 0;
+    particles.forEach((p1, i) => {
+        particles.slice(i + 1).forEach(p2 => {
+            const dx = p1.x - p2.x;
+            const dy = p1.y - p2.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 80) {
+                headerCtx.beginPath();
+                headerCtx.strokeStyle = `rgba(255, 100, 255, ${(1 - dist / 80) * 0.2})`; // line color with fading effect based on distance
+                headerCtx.lineWidth = 0.5;
+                headerCtx.moveTo(p1.x, p1.y);
+                headerCtx.lineTo(p2.x, p2.y);
+                headerCtx.stroke();
+            }
+        });
+    });
+
+    // shadow for all particles
+    headerCtx.shadowBlur = 12;
+    headerCtx.shadowColor = 'rgba(255, 100, 255, 0.7)';
+
+    particles.forEach(p => {
+        const dx = p.x - mouse.x;
+        const dy = p.y - mouse.y;
+        const dist = Math.sqrt(dx * dx + dy * dy) || 1; // prevent division by zero
+        const force = Math.max(0, 150 - dist) / 150; // repulsion force based on distance
+
+        //update particle position with repulsion from mouse
+        p.y -= p.speed + force * 1.2;
+        p.x += p.drift + (force * dx / dist) * 0.3;
+
+        if (p.y < -10) {
+            p.y = h + 10;
+            p.x = Math.random() * w;
+        }
+
+        if (p.x < -10) p.x = w + 10;
+        if (p.x > w + 10) p.x = -10;
+
+        const pulseSize = p.size + Math.sin(time * 0.003 + p.phase) * 0.3;
+
+        //draw the particle with color variation
+        headerCtx.beginPath();
+        headerCtx.fillStyle = `hsla(${p.hue}, 100%, 70%, ${p.glow})`;
+        headerCtx.arc(p.x, p.y, pulseSize, 0, Math.PI * 2);
+        headerCtx.fill();
+    });
+
+    requestAnimationFrame(draw);
+}
+
+draw();
